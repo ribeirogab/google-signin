@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, getIdToken } from "firebase/auth";
 
 import { auth } from "./firebase";
 
@@ -13,9 +13,11 @@ export const signInWithGoogle = async () => {
       throw new Error("Credential is missing");
     }
 
-    const token = credential.idToken;
+    // const idToken = await getIdToken(result.user);
+    const { idToken } = credential;
 
-    console.log("token", token);
+    // console.log("idToken1", idToken1);
+    console.log("idToken", idToken);
   } catch (error) {
     console.log(error);
   }
